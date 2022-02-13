@@ -18,5 +18,6 @@ class Fancy_Player < Gosu::Window
     def needs_cursor?
         true
     end
+end 
 
 Fancy_Player.new.show()
