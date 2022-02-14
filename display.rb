@@ -56,6 +56,13 @@ def display_track_list(track_list)#, album_list, start_index)
     end
 end
 
+#! shows "play something" on the screen
+def nothing_playing()
+    Gosu.draw_rect(207, 80, 289, 289, 0xff_ffe599, 1)
+    (Gosu::Font.new(70)).draw_text("play", 370, 210, 1, 1.0, 1.0, 0xff_000000)
+    (Gosu::Font.new(65)).draw_text("something", 230, 270, 1, 1.0, 1.0, 0xff_000000)
+end
+
 #! shows playing track's information on screen
 def display_playing_track(album_list, data)
     track_title = album_list[data[0]].tracks[data[1]].title
