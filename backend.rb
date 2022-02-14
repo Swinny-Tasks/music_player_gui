@@ -27,3 +27,13 @@ class Artwork
         @y_coff = y_coff
     end
 end
+
+
+#! get image and its values from the stated path
+def get_artwork(path)
+    image = Gosu::Image.new(path)
+    x_coff = (289.0 / image.width)
+    y_coff = (289.0 / image.height)
+    art = Artwork.new(image, x_coff, y_coff)
+    return art
+end
