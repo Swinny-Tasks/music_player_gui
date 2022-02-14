@@ -28,6 +28,26 @@ class Artwork
     end
 end
 
+#! returns a single album from the file in form of a class instance
+def album_data(file)
+    album_first_name = file.readline().chomp()
+    artist_first_name = file.readline().chomp()
+    genre = file.readline().chomp()
+
+    artwork_path = file.readline().chomp()
+    artwork = get_artwork(artwork_path)
+
+    tracks = Array.new()
+    track_number = file.readline().to_i()
+    track_number.times{
+        single_track_name = file.readline().chomp()
+        single_track_location = file.readline().chomp()
+        single_track_path = Gosu::Song.new(single_track_location)
+        tracks.push(Track.new(single_track_name, single_track_path))
+    }
+    album = Album.new(album_first_name, artist_first_name, genre, artwork ,tracks)
+    return album
+end
 
 #! get image and its values from the stated path
 def get_artwork(path)
