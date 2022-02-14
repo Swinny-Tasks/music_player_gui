@@ -57,3 +57,15 @@ def get_artwork(path)
     art = Artwork.new(image, x_coff, y_coff)
     return art
 end
+
+#! returns array of all albums there in the file
+def read_album_list(path)
+    album_list = Array.new()
+    File.open(path, "r") do |file|
+        number_of_albums = file.readline.to_i()
+        number_of_albums.times{
+            single_album = album_data(file)
+            album_list.push(single_album)
+        }; end
+    return album_list
+end
