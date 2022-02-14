@@ -27,3 +27,9 @@ def display_basic_layout(mouse_x, mouse_y, condition)
         Gosu.draw_rect(9, (10+i), 21, 3, menu_color, 0)
     i += 7}
 end
+
+#! makes background quite darker when menu's being shown
+def background_fade()
+    Gosu.draw_rect(0, 0, 720, 480, 0x90_000000, 2)
+end
+
