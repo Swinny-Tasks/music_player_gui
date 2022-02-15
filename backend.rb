@@ -69,3 +69,12 @@ def read_album_list(path)
         }; end
     return album_list
 end
+
+#! adds whitespace to make text center align for the given line length
+def make_center(text, line_size)
+    space_before = space_after = (line_size - text.size())/2
+    space_before += 1 if text.size() % 2 != 0
+    space_before.times {text = " " + text}
+    space_after.times {text = text + " "}
+    return text
+end
