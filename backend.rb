@@ -88,3 +88,13 @@ def album_selected(album_list, y)
     #? if click isn't on anything
     return -1
 end
+
+#! track selected from the list
+def track_selected(track_list, y, x)
+    for i in (0...track_list.size())
+        track_row = (50 + (25*i))
+        return i if (track_row...(track_row+24)).include?(y)
+    end
+    #? if click isn't on anything
+    return -1
+end
