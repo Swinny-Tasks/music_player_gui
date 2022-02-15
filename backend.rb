@@ -78,3 +78,13 @@ def make_center(text, line_size)
     space_after.times {text = text + " "}
     return text
 end
+
+#! album selected from the list
+def album_selected(album_list, y)
+    for i in (0...album_list.size())
+        album_row = (50 + (45*i))
+        return i if (album_row...(album_row+44)).include?(y)
+    end
+    #? if click isn't on anything
+    return -1
+end
