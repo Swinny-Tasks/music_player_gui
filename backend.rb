@@ -79,6 +79,31 @@ def make_center(text, line_size)
     return text
 end
 
+#! checks if mouse is over the specified program element
+def mouse_over_element(x, y, element)
+    case element
+    when "right_slider"
+        x_values = [495, 555]
+        y_values = [104, 343]
+    when "left_slider"
+        x_values = [143, 206]
+        y_values = [104, 343]
+    when "menu"
+        x_values = [9, 30]
+        y_values = [10, 27]
+    when "album_list"
+        x_values = [40, 265]
+        y_values = [8, 458]
+    when "track_list"
+        x_values = [276, 501]
+        y_values = [8, 458]
+    when "artwork"
+        x_values = [207, 496]
+        y_values = [80, 369]
+    end
+    return (x_values[0]...x_values[1]).include?(mouse_x) && (y_values[0]...y_values[1]).include?(mouse_y)
+end
+
 #! album selected from the list
 def album_selected(album_list, y)
     for i in (0...album_list.size())
