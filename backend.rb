@@ -123,3 +123,24 @@ def track_selected(track_list, y, x)
     #? if click isn't on anything
     return -1
 end
+
+#! skip forward or backward a track
+def change_track(data, album_list, action)
+    if action == 1
+        if album_list[data[0]].tracks.size() > data[1] + 1
+            data[1] += 1
+        else
+            if (album_list.size() > data[0] + 1) then (data[0] += 1) else (data[0] = 0); end
+            data[1] = 0
+        end
+    else
+        if data[1] == 0
+            if (data[0] == 0) then (data[0] = album_list.size() -1) else (data[0] -= 1); end
+            data[1] = album_list[data[0]].tracks.size() -1
+        else 
+            data[1] -= 1
+        end
+    end
+    return data
+end
+
