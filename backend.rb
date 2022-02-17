@@ -144,3 +144,8 @@ def change_track(data, album_list, action)
     return data
 end
 
+#! if song's playing then pause it, if its paused then play it
+def pause_toggle(running_song)
+    if running_song.paused? then running_song.play() else running_song.pause(); end
+end
+
