@@ -18,6 +18,26 @@ class Fancy_Player < Gosu::Window
     def needs_cursor?
         true
     end
+
+    def update()
+        @show_menu[1] = true if @selected_album >= 0
+        @show_menu[1] = false if @show_menu[0] == false
+        if (@now_playing_data != [@selected_album, @selected_song]) && (@selected_song >= 0)
+            @now_playing_data = [@selected_album, @selected_song]
+            @selected_song = -1; @selected_album = -1
+            @show_menu[1] = false
+            @music_running = true
+            @album_list[@now_playing_data[0]].tracks[@now_playing_data[1]].path.play()
+        end
+
+        @now_playing_data = track_order(@now_playing_data, @album_list) if @now_playing_data != nil
+    end
+
+    def draw()
+    end
+
+    def button_down(id)
+    end
 end 
 
 Fancy_Player.new.show()
