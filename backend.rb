@@ -149,3 +149,11 @@ def pause_toggle(running_song)
     if running_song.paused? then running_song.play() else running_song.pause(); end
 end
 
+#! plays next song when current ends
+def track_order(data, album_list)
+    #puts ("now playing #{album_list[data[0]].tracks[data[1]].title} by #{album_list[data[0]].artist}") #for debug
+    unless album_list[data[0]].tracks[data[1]].path.playing? || album_list[data[0]].tracks[data[1]].path.paused?
+        album_list[data[0]].tracks[data[1]].path.play
+    end
+    return data
+end
