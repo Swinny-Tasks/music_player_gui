@@ -34,6 +34,10 @@ class Fancy_Player < Gosu::Window
     end
 
     def draw()
+        display_basic_layout(mouse_x, mouse_y, @show_menu[0])
+        display_album_list(@album_list) if @show_menu[0]
+        display_track_list(@album_list[@selected_album].tracks) if @show_menu[1] #&& (not @music_running)
+        if @music_running then display_art(@now_playing_data, @album_list) else nothing_playing(); end
     end
 
     def button_down(id)
