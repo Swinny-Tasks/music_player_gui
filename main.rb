@@ -32,7 +32,7 @@ class Fancy_Player < Gosu::Window
 
         @now_playing_data = track_order(@now_playing_data, @album_list) if @now_playing_data != nil
     end
-
+    
     def draw()
         display_basic_layout(mouse_x, mouse_y, @show_menu[0])
         display_album_list(@album_list) if @show_menu[0]
@@ -41,7 +41,19 @@ class Fancy_Player < Gosu::Window
     end
 
     def button_down(id)
+        case id
+        when Gosu::KB_ESCAPE
+            close
+        when Gosu::MS_LEFT
+            track_clicked = track_selected(@album_list[@selected_album].tracks, mouse_y, mouse_x) if (@show_menu[1])
+            @selected_song = track_clicked if (276...531).include?(mouse_x) && track_clicked != nil
+            if @show_menu[0]
+                album_clicked = album_selected(@album_list, mouse_y)
+                @selected_album = album_clicked if (40...265).include?(mouse_x)
+                @show_menu[0] = mouse_over_element(mouse_x, mouse_y, "album_list")
+            end
+        end
     end
-end 
+end
 
 Fancy_Player.new.show()
