@@ -51,6 +51,17 @@ class Fancy_Player < Gosu::Window
                 album_clicked = album_selected(@album_list, mouse_y)
                 @selected_album = album_clicked if (40...265).include?(mouse_x)
                 @show_menu[0] = mouse_over_element(mouse_x, mouse_y, "album_list")
+            else
+                #? skip song forward/backword (+1/-1) if click is directly on sliders
+                if mouse_over_element(mouse_x, mouse_y, "right_slider") && @music_running then @now_playing_data = change_track(@now_playing_data, @album_list, 1); end
+                
+                if mouse_over_element(mouse_x, mouse_y, "left_slider") && @music_running then @now_playing_data = change_track(@now_playing_data, @album_list, -1); end
+
+                #? pause/play when click is directly over the image cover 
+                pause_toggle(@album_list[@now_playing_data[0]].tracks[@now_playing_data[1]].path) if mouse_over_element(mouse_x, mouse_y, "artwork") && @music_running
+
+                @selected_album = -1 if (@selected_song != -1)
+                @show_menu[0] = mouse_over_element(mouse_x, mouse_y, "menu")
             end
         end
     end
